@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>guess word</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="tb1">
+		
+		<nav><ul><li>Countries</li></ul></nav>
+
+		<img src="ft1.png" class="ft-minha">
+		<div class="escreve" class="letter-input">
+			<input type="text" name="" disabled>
+			<input type="text" name="" disabled>
+			<input type="text" name="" disabled>
+			<input type="text" name="" disabled>
+			<input type="text" name="" disabled>
+			<input type="text" name="" disabled>
+			<input type="text" name="" disabled>
+		</div>
+				 <div id="word-display"></div>
+	    <div id="guesses">Tentativas restantes: <span id="remaining-guesses">6</span></div>
+	    <div id="guessed-letters">Letras adivinhadas: <span id="guessed-letters-list"></span></div>
+	    <input type="text" id="letter-input" maxlength="1">
+	    <button onclick="guessLetter()">Mata</button>
+ <div id="alphabet-buttons">
+	       
+	</div>
+	</div>
+	<script>
+			const words = ["pesponteasses", "pinotearem", "engendrou", "indemnizarmos", "aconsoantarias", "arreste", "estereotiparam", "enfastiariam", "estratificaremos", "soltastes", "fraseaste", "prosseguem", "discursai", "gretasse", "ratazanassem", "infamai", "charlataneie", "descomoveres", "convivida", "coreografasses", "arrematador", "presbiteriano", "aurificara", "saberiam", "fenderem", "defensasses", "balbuciais", "imputes", "inaugurardes", "impopularizavas", "individuadora", "encurralam", "negada", "mesquinhamos", "cartografastes", "arrancaria", "arboresceram", "enegrece", "refendera", "passivei", "stops", "abaixarmos", "suspendemos", "intrigarem", "festejava", "razoabilidade", "plebeizarei", "berregaras", "munjas", "serradelas", "sobreporeis", "desmobiladas", "quintuplicados", "galasse", "despovoam", "fanicaremos", "desincorporam", "houvesses", "deferiria", "ornamentamos", "retardamos", "boche", "renavego", "mutilariam", "rosal", "decretarei", "atesses", "incidisse", "antemuradas", "pestilentas", "bafeja", "guardavas", "evocava", "concorrera", "catalisemos", "esmurrava", "desenjoaram", "acalentareis", "avizinharem", "clareiem", "atempam", "viciar", "motivavas", "ziguezagueaste", "repudies", "grisarem", "postularmos", "averiguai", "peladas", "algebrizados", "desengracemos", "enfolhastes", "paparicarem", "retires", "consistirmos", "flava", "bulemos", "foscasses", "arribais", "aresteiros", "indente", "abrigaras", "trasladai", "bolastes", "ilharas", "assombraras", "ratazanardes", "selecionas", "ironizados", "passivos", "aparentada", "sinalizariam", "apropositavam", "desempanais", "arrumados", "endividasse", "iluminava", "seja", "desunifiqueis", "horda", "raptaste", "quesitos", "presasses", "comunicarmos", "carrilhonais", "urdimentos", "herdarem", "transportaram", "dengue", "ravinemos", "avessareis", "subinspetoras", "reclamaria", "noivavam", "ramificai", "tragasses", "estilos", "descalcificaram", "acalcado", "afilhe", "sacarmos", "repoises", "coliga", "reaparecido", "redimensionava", "adentras", "massacrar", "nevarias", "compaginardes", "assopraria", "tratanteado", "necessitados", "vareira", "cedilhados", "levedaria", "carimba", "despertos", "impermeabilizados", "ordenadas", "varejareis", "resigno", "farrapava", "rebelei", "desembalarem", "girou", "macerassem", "soou", "desinfestarmos", "loireceres", "lesamos", "cometeste", "coadquirireis", "hebraizarem", "afumam", "genealogista", "festejador", "laureio", "governasse", "redigirias", "esfregadoras", "maquinara", "concetualizes", "particularizarmos", "aquadrilhares", "caracolavas", "abastonares", "rasgamentos", "escolarizarem", "abrasaram", "incense", "soberanas", "falsificador", "extasiares", "arregramos", "brutais", "desencabelarem", "labializeis", "reprogramaria", "arrefentasse", "conceituarem", "desengrenaram", "ostentada", "rabequearemos", "atedie", "debicarem", "imaginadoras", "aduzias", "desagoniara", "redondeai", "limpadores", "desbastadora", "topeis", "exulariam", "evangelizarem", "envinagravas", "nitratavam", "brotasses", "excursionastes", "emulsionantes", "descoordenais", "embatoco", "turqueses", "calcorrearem", "reacoplaste", "pontificarmos", "lavraram", "remastigado", "rebula", "musicaria", "ladrilheis", "repusesse", "respigava", "enxugou", "individuam", "assumira", "desencapareis", "profetizado", "maluquearas", "participativo", "aclimatizeis", "interrompi", "baseavas", "malogrem", "mediocrizareis", "arredei", "intensificada", "individualizais", "quicos", "enveredareis", "autocopiarem", "perdularia", "doutros", "exclamaremos", "orlassem", "desvendaram", "assotado", "macaquinho", "malcozestes", "comprometi", "prestabilidade", "desabitasse", "figurinista", "muralhares", "narcotizam", "anilhassem", "coreografais", "pardacenta", "escrevinharmos", "malcozerem", "vendereis", "enervamento", "gorjeaste", "aprefixareis", "recavara", "seixal", "fotografaras", "adestrasse", "talheres", "acordam", "analfabeta", "prosperas", "desgrenharas", "sinonimizadas", "gozamos", "acresciam", "infundindo", "rebatizariam", "assapatada", "mundializarei", "ensebe", "permutada", "rebolamos", "gravitassem", "cochadas", "regrassem", "quartinho", "vitimaste", "refortificarmos", "nefasto", "burrificareis", "fortaleceram", "minorariam", "rastejarmos", "desencarrilavam", "flauteara", "nanaras", "antevendo", "intermediaram", "pernoutarias", "prosardes", "confidenciais", "desconvertias", "universalize", "abjudiqueis", "esfuziamos", "causticando", "acoimassem", "profissionalizaram", "progressivas", "perdoada", "reembarcando", "engradearmos", "cortado", "atoucinhem", "entrevereis", "estardalhas", "superlativares", "postuladores", "rusgado", "rascasses", "negoceias", "seletivas", "desunirias", "coroarem", "atraiais", "murmurejo", "atentes", "blasfemaria", "preporia", "preestabelecemos", "agrediam", "azulejareis", "saltitais", "ancestralmente", "desvenero", "sobejada", "vociferadas", "realizava", "aproximarem", "tossicardes", "reinscritos", "brecando", "descampadas", "amealhador", "malbaratadores", "encalacrai", "sustando", "adjetivares", "revirava", "pousarem", "quiromancia", "quadruplaste", "garantirmos", "coloreie", "expiarem", "traduzo", "farolizavam", "vassourardes", "barcarola", "delimitadas", "obtenham", "desnorteara", "espionaria", "tarifarei", "contraproporemos", "selaras", "marcho", "complanem", "relocalizes", "escapulias", "amourariam", "originavas", "inflamo", "ocultadas", "desqualificaste", "emparceleis", "inversamente", "jurai", "ameigado", "marearei", "malfadei", "ensacastes", "corricariam", "enforcaras", "cascalhou", "legitimam", "navalhou", "gaguejaremos", "reconsideraste", "policie", "cinematografa", "dealbavam", "baralhemos", "validassem", "afranzinastes", "sortira", "caldeirara", "orquestrariam", "representariam", "tacanhearia", "desmandasse", "croniquem", "inscrevi", "crepusculizeis", "revisaria", "tilintante", "quebraria", "benzo", "desestagnara", "bolinaras", "municipalizai", "desacataste", "enfiamentos", "engane", "retaliasses", "dando", "resolverem", "estrebuchamento", "calejavas", "desnaturarem", "introdutivo", "enrolhar", "depositaremos", "escrevinhadora", "impossibilitardes", "arade", "atarantamento", "circunscreveremos", "desencaminheis", "nicotino", "anotada", "inovaremos", "maxilares", "invetivai", "cigarrardes", "carcinomas", "refloristes", "aloirem", "frustradora", "aniversariardes", "gabem", "repescadas", "fugiria", "sufocaste", "ziguezagueavam", "terrificaram", "denudado", "rotores", "fungando", "menosprezos", "portugalizariam", "descarregar", "enquadrar", "acreditaras", "idolatro", "reequilibrasse", "prosperasses", "inconformai", "desencabelasse", "pedantearem", "contextualizarmos", "colapsasse", "estontece", "reexpedissem", "idolatrasse", "compulse", "acantonavas", "romanceardes", "atroparias", "filatelismos", "argumentais", "acobardardes", "alvissaravam", "revistemos", "menorizei", "bromeis", "resumes", "individuarem", "gananciavam", "desencorajas", "amontoaste", "segregarias", "reiteravam", "recompense", "rabujem", "desencorajas", "goelaria", "ilegalizei", "desmineralizamos", "caulificamos", "pulsei", "absorveria", "erigido", "atroador", "acometedoras", "destinais", "quotizarmos", "pasteleiras", "reabririas", "navegando", "passearem", "investirem", "dissimular", "mascares", "insularem", "pincelarias", "surpreendido", "prolongas", "drenarias", "sinalizarias", "empastavas", "enrabichardes", "dopou", "retingistes", "promovi", "retalhadoras", "fidelizareis", "arvorarmos", "marretemos", "desabituo", "monetizares", "praguejais", "comerciaras", "oceanicidades", "desintegras", "conservantistas", "influencies", "passeata", "ruja", "andamento", "cavalgareis", "abusassem", "rixares", "incitares", "descapitalizaras", "aventes", "regerariam", "desmentias", "macro", "contentavas", "impermeabilizas", "aclimate", "espionai", "namorais", "vendavam", "destrones", "guitarrearem", "capacitem", "algebrizam", "reciprocarias", "recobriras", "infestara", "catolize", "impuseste", "distendidas", "tateado", "traseiros", "surgimento", "indultara", "amontoai", "ensaboarem", "sanita", "turbasses", "desquitarem", "hebraizamos", "desaclimatai", "subavaliares", "esganadas", "biforme", "desencardiriam", "gaspearam", "desamontoada", "apipasse", "tossiras", "dependuravam", "lambearei", "sinfonizavas", "agasalhastes", "anavalhou", "espancava", "desnasalasse", "fardaram", "sabotava", "pantanizei", "narramos", "devotava", "acudires", "recompraras", "reexportou", "aeroportos", "subscreverias", "assanhasses", "colardes", "castificados", "abanemos", "entesoirassem", "instais", "ecopontos", "enluvando", "bananeiro", "fingistes", "acobardando", "movimentem", "aquinhoei", "predefiniras", "derrogava", "faturava", "principescos", "degelam", "grandeza", "oveis", "malfizeres", "biscouto", "estoures", "aterrorizes", "arrasarias", "ingerisse", "ementaria", "analises", "encetais", "evacuasses", "elipsoidal", "dualizando", "desagravaria", "armazenamentos", "conformara", "atines", "amargavas", "autonomizou", "restringias", "encurralaste", "corpanzil", "teledirija", "hermetismos", "compreendiam", "ambientes", "aderidos", "convirmos", "enrascados", "patinhara", "dogmatizando", "emergindo", "debrucemos", "paroquiaram", "choraminguei", "existiremos", "desacomodais", "coordenemos", "encartavam", "amontanhavam", "substituindo", "sancionares", "ocidentalizem", "lentejoulemos", "reavistes", "formularam", "assolape", "exaltarias", "safra", "delirardes", "escandalizar", "redutos", "aconselharia", "engalfinhei", "gracejariam", "preestabelece", "ressalvares", "lampejava", "chalreadas", "progrida", "indexadora", "concernira", "acarretam", "matinada", "industriareis", "alavancamos", "loucura", "ansiais", "berloques", "dignificadas", "foliar", "transitivarei", "insuflai", "primorosa", "seborreia", "encarcerarei", "reincides", "aposentastes", "miserem", "impropriavam", "modularidade", "floresceis", "germanizadas", "descomprometeremos", "gravidarmos", "amourar", "ambicionou", "extrais", "escanhoaram", "recavado", "digressionou", "ravinai", "chi", "casquilhou", "sibilantizaras", "discordem", "peralteaste", "xisto", "reescalonassem", "cavaleirareis", "abrigaria", "cacicada", "acarretardes", "mim", "interventivas", "decomponibilidade", "mercadejaria", "barulharam", "despenteares", "lavoiras", "prejudicaste", "cauteleiro", "ginasial", "desinfecionareis", "amarrotada", "letargias", "emparcelarem", "escalfaram", "dezassete", "adentrada", "despejassem", "esquadria", "redobradas", "analisarmos", "repovoados", "despeitora", "bocadinhos", "existires", "indutores", "corujasse"];
+let selectedWord = words[Math.floor(Math.random() * words.length)];
+let guessedWord = Array(selectedWord.length).fill('_');
+let remainingGuesses = 6;
+let guessedLetters = [];
+
+document.getElementById('word-display').textContent = guessedWord.join(' ');
+
+function guessLetter() {
+    const letterInput = document.getElementById('letter-input').value.toLowerCase();
+    if (letterInput.length !== 1 || guessedLetters.includes(letterInput)) return;
+
+    guessedLetters.push(letterInput);
+    document.getElementById('guessed-letters-list').textContent = guessedLetters.join(', ');
+
+    if (selectedWord.includes(letterInput)) {
+        for (let i = 0; i < selectedWord.length; i++) {
+            if (selectedWord[i] === letterInput) {
+                guessedWord[i] = letterInput;
+            }
+        }
+        document.getElementById('word-display').textContent = guessedWord.join(' ');
+    } else {
+        remainingGuesses--;
+        document.getElementById('remaining-guesses').textContent = remainingGuesses;
+        if (remainingGuesses === 0) {
+            alert("Você perdeu! A palavra era: " + selectedWord);
+            location.reload();
+        }
+    }
+
+    if (guessedWord.join('') === selectedWord) {
+        alert("Parabéns! Você venceu!");
+        location.reload();
+    }
+    document.getElementById('letter-input').value = '';
+}
+
+// Função para criar botões com letras do alfabeto
+function createAlphabetButtons() {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const alphabetButtons = document.getElementById('alphabet-buttons');
+    
+    for (let i = 0; i < alphabet.length; i++) {
+        const letter = alphabet[i];
+        const button = document.createElement('button');
+        button.textContent = letter;
+        button.addEventListener('click', function() {
+            document.getElementById('letter-input').value = letter;
+        });
+        alphabetButtons.appendChild(button);
+    }
+}
+
+// Chame a função para criar os botões com letras do alfabeto
+createAlphabetButtons();
+
+	</script>
+</body>
+</html>

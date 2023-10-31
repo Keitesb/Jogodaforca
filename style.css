@@ -1,0 +1,36 @@
+.tb1{
+	width: 340px;
+	height: 500px;
+	background: lightcyan;
+	margin-top: 100px;
+	margin-left: 100px;
+	border: 4px solid darkorange;
+}
+ nav, ul, li{
+ 	background-color: darkcyan;
+ 	text-decoration: none;
+ 	list-style: none;
+ 	color: white;
+ }
+
+.botoes{
+	border-radius: 2px;
+	margin-top: 20px;
+
+}
+body{
+	background-color: black;
+}
+
+button{
+	color: skyblue;
+	background: white;
+	border-bottom: blue;
+	margin: 8px;
+	border: 1px solid seagreen;
+	border-radius: 3px;
+}
+input[type="text"] {
+	padding: 3px;
+	width: 17px;
+}
